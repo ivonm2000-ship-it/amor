@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para el amor de mi vida ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #fff5f7;
+  background:
+    radial-gradient(ellipse at top, #79264f, transparent 65%),
+    linear-gradient(145deg, #210d20, #48152f, #170c20);
+  overflow-x: hidden;
+  text-align: center;
+}
+
+main {
+  width: min(92%, 680px);
+  margin: auto;
+  padding: 45px 0 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.tag {
+  color: #ffc1d6;
+  letter-spacing: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(35px, 8vw, 58px);
+  font-weight: normal;
+  margin: 18px 0 10px;
+  text-shadow: 0 0 25px #ff77ad66;
+}
+
+.subtitle {
+  color: #f5c9da;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.envelope-area {
+  margin: 38px auto 25px;
+  width: min(100%, 350px);
+  perspective: 900px;
+}
+
+.envelope {
+  position: relative;
+  height: 215px;
+  cursor: pointer;
+  filter: drop-shadow(0 15px 20px #0005);
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #b94e76;
+  border-radius: 8px;
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background: #e995b0;
+  clip-path: polygon(0 100%, 0 0, 50% 62%, 100% 0, 100% 100%);
+  border-radius: 8px;
+  z-index: 3;
+}
+
+.flap {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 65%;
+  background: #f5b4c9;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 4;
+}
+
+.seal {
+  position: absolute;
+  top: 85px;
+  left: calc(50% - 23px);
+  z-index: 5;
+  font-size: 38px;
+  transition: opacity 0.3s;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .seal {
+  opacity: 0;
+}
+
+.letter {
+  position: absolute;
+  left: 5%;
+  width: 90%;
+  top: 12px;
+  height: 185px;
+  overflow: hidden;
+  padding: 20px 14px;
+  color: #7c2549;
+  background: #fff4f5;
+  border-radius: 5px;
+  transition: transform 0.9s ease, height 0.9s ease;
+  z-index: 2;
+}
+
+.letter strong {
+  font-size: 20px;
+}
+
+.letter p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.envelope.open .letter {
+  transform: translateY(-90px);
+  height: 245px;
+  z-index: 5;
+}
+
+.hint {
+  font-size: 14px;
+  color: #ffc5d9;
+  animation: pulse 1.8s infinite;
+}
+
+button {
+  border: 1px solid #ffc3d8;
+  border-radius: 30px;
+  padding: 13px 22px;
+  margin: 8px 5px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.primary {
+  background: #ffb5ce;
+  color: #54152f;
+}
+
+.secondary {
+  background: transparent;
+  color: #ffe5ed;
+}
+
+.message {
+  display: none;
+  margin-top: 35px;
+  padding: 28px 23px;
+  background: #fff0f51a;
+  border: 1px solid #ffc1d644;
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  animation: appear 1s ease;
+}
+
+.message.show {
+  display: block;
+}
+
+.message h2 {
+  color: #ffc1d6;
+  font-size: 29px;
+  font-weight: normal;
+}
+
+.message p {
+  line-height: 1.9;
+  font-size: 17px;
+}
+
+.surprise {
+  display: none;
+  font-size: 19px;
+  color: #ffd5e3;
+  line-height: 1.8;
+  margin-top: 22px;
+  animation: appear 1s ease;
+}
+
+.surprise.show {
+  display: block;
+}
+
+.signature {
+  margin-top: 25px;
+  color: #ffb6d0;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  z-index: 1;
+  animation: floatUp linear forwards;
+  opacity: 0.8;
+}
+
+footer {
+  margin-top: 40px;
+  color: #e7a6bd;
+  font-size: 12px;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  50% { opacity: 0.55; }
+}
+
+@media (max-width: 420px) {
+  main { padding-top: 30px; }
+  .envelope { height: 190px; }
+  .letter { height: 165px; }
+  .envelope.open .letter { height: 225px; }
+}
+</style>
+</head>
+
+<body>
+<main>
+  <div class="tag">♡ Un pequeño regalo para ti ♡</div>
+
+  <h1>Feliz cumpleaños,<br>mi amor ❤️</h1>
+
+  <p class="subtitle">
+    Hoy el mundo celebra tu nacimiento,<br>
+    y yo celebro la suerte de tenerte en mi vida.
+  </p>
+
+  <div class="envelope-area">
+    <div class="envelope" id="envelope"
+         role="button" tabindex="0"
+         aria-label="Abrir la carta">
+      <div class="envelope-back"></div>
+
+      <div class="letter">
+        <strong>Para ti, mi amor 💌</strong>
+        <p>
+          Hay algo que quiero decirte<br>
+          en este día tan especial...
+        </p>
+        <span>Con todo mi corazón ❤️</span>
+      </div>
+
+      <div class="flap"></div>
+      <div class="envelope-front"></div>
+      <div class="seal">💗</div>
+    </div>
+  </div>
+
+  <p class="hint" id="hint">♡ Toca el sobre para abrir tu carta ♡</p>
+
+  <button class="primary" id="openBtn">
+    Abrir mi carta 💌
+  </button>
+
+  <button class="secondary" id="musicBtn">
+    ♫ Activar música
+  </button>
+
+  <section class="message" id="message">
+    <h2>Mi amor hermoso 💖</h2>
+
+    <p>
+      Feliz cumpleaños, mi vida. 🥹❤️
+    </p>
+
+    <p>
+      Hoy quiero recordarte lo especial que eres para mí.
+      Desde que llegaste a mi vida, hay momentos que se
+      sienten más bonitos, sonrisas que salen sin motivo
+      y recuerdos que guardo como pequeños tesoros.
+    </p>
+
+    <p>
+      Deseo que este nuevo año de tu vida te regale
+      muchísima felicidad, salud, sueños cumplidos y
+      razones para sonreír. Ojalá pudiera abrazarte
+      ahora mismo y decirte todo esto mirándote a los ojos.
+    </p>
+
+    <p>
+      Gracias por ser tú, por existir y por ocupar
+      un lugar tan bonito en mi corazón.
+      Hoy y siempre, deseo verte feliz. 💗
+    </p>
+
+    <p>
+      Y si pudiera pedir un deseo para este día,
+      pediría seguir creando recuerdos contigo,
+      celebrar tus alegrías y acompañarte en cada paso.
+    </p>
+
+    <div class="signature">
+      Te amoo muchísimo.<br>
+      Feliz cumpleaños, mi amor. 🎂❤️
+    </div>
+
+    <button class="primary" id="surpriseBtn">
+      Tengo otra cosita para ti 🎁
+    </button>
+
+    <div class="surprise" id="surprise">
+      ✨ Sorpresa, mi amor ✨<br><br>
+      Entre tantas personas en este mundo,
+      qué bonito que nuestros caminos se hayan encontrado.
+      <br><br>
+      Si volviera a empezar, desearía volver a coincidir contigo.
+      <br><br>
+      💗 Hoy, mañana y en todos los cumpleaños que vengan.
+      <br><br>
+      <span style="font-size:35px">💋❤️🎂💐</span>
+    </div>
+  </section>
+
+  <footer>
+    Hecho con mucho amor, pensando solamente en ti. ♡
+  </footer>
+</main>
+
+<script>
+const envelope = document.getElementById("envelope");
+const openBtn = document.getElementById("openBtn");
+const message = document.getElementById("message");
+const hint = document.getElementById("hint");
+const surpriseBtn = document.getElementById("surpriseBtn");
+const surprise = document.getElementById("surprise");
+const musicBtn = document.getElementById("musicBtn");
+
+let opened = false;
+let audioContext = null;
+let musicTimer = null;
+let noteIndex = 0;
+
+// Una melodía suave generada por el navegador.
+const melody = [
+  [261.63, 329.63, 392.00],
+  [293.66, 349.23, 440.00],
+  [261.63, 329.63, 392.00],
+  [220.00, 293.66, 349.23],
+  [246.94, 329.63, 392.00],
+  [261.63, 349.23, 440.00],
+  [220.00, 293.66, 392.00],
+  [196.00, 261.63, 329.63]
+];
+
+function playChord() {
+  if (!audioContext || audioContext.state !== "running") return;
+
+  const chord = melody[noteIndex % melody.length];
+  noteIndex++;
+
+  chord.forEach((frequency, index) => {
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+
+    gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(
+      index === 0 ? 0.035 : 0.018,
+      audioContext.currentTime + 0.15
+    );
+    gain.gain.exponentialRampToValueAtTime(
+      0.0001,
+      audioContext.currentTime + 1.5
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 1.6);
+  });
+}
+
+async function toggleMusic() {
+  if (musicTimer) {
+    clearInterval(musicTimer);
+    musicTimer = null;
+
+    if (audioContext) await audioContext.suspend();
+
+    musicBtn.textContent = "♫ Activar música";
+    return;
+  }
+
+  try {
+    const AudioEngine =
+      window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioEngine) {
+      alert("Tu navegador no permite reproducir esta melodía.");
+      return;
+    }
+
+    if (!audioContext) audioContext = new AudioEngine();
+
+    await audioContext.resume();
+    playChord();
+    musicTimer = setInterval(playChord, 1700);
+    musicBtn.textContent = "♫ Pausar música";
+  } catch (error) {
+    alert("No se pudo activar el audio. Inténtalo otra vez.");
+  }
+}
+
+function openLetter() {
+  if (opened) return;
+
+  opened = true;
+  envelope.classList.add("open");
+  message.classList.add("show");
+  hint.textContent = "♡ Una carta escrita desde el corazón ♡";
+  openBtn.textContent = "Carta abierta ❤️";
+
+  createHearts(24);
+}
+
+function createHearts(amount) {
+  for (let i = 0; i < amount; i++) {
+    setTimeout(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = ["❤️", "💗", "💕", "✨", "💖"][
+        Math.floor(Math.random() * 5)
+      ];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random() * 22) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+      document.body.appendChild(heart);
+      heart.addEventListener("animationend", () => heart.remove());
+    }, i * 100);
+  }
+}
+
+openBtn.addEventListener("click", openLetter);
+envelope.addEventListener("click", openLetter);
+
+envelope.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openLetter();
+  }
+});
+
+musicBtn.addEventListener("click", toggleMusic);
+
+surpriseBtn.addEventListener("click", () => {
+  surprise.classList.toggle("show");
+
+  surpriseBtn.textContent = surprise.classList.contains("show")
+    ? "Mi corazón es tuyo ❤️"
+    : "Tengo otra cosita para ti 🎁";
+
+  if (surprise.classList.contains("show")) {
+    createHearts(35);
+  }
+});
+</script>
+</body>
+</html>
